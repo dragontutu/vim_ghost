@@ -96,7 +96,8 @@ set showtabline=0 " hide tab
 "}}}
 " Behaviors {{{
 " ---------------
-"source $VIMRUNTIME/mswin.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 syntax enable
 syntax on
@@ -547,4 +548,8 @@ Plugin 'vim-scripts/jade.vim'
 Plugin 'wavded/vim-stylus'
 Plugin 'VimClojure'
 Plugin 'skammer/vim-css-color'
+"}}}
+" Syntax {{{
+source $VIMRUNTIME/mswin.vim
+behave mswin
 "}}}
