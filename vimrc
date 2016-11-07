@@ -96,7 +96,8 @@ set showtabline=0 " hide tab
 "}}}
 " Behaviors {{{
 " ---------------
-"source $VIMRUNTIME/mswin.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 syntax enable
 syntax on
@@ -163,12 +164,17 @@ set complete=.,w,b,u,U
 " Folding{{{
 " ---------------
 set foldenable
+"设置折叠策略为{{{ }}}
 set foldmethod=marker
+"设置折叠策略为缩进
+"set foldmethod=indent
 set foldlevel=0
 set foldlevelstart=0
 nnoremap <Space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 let g:xml_syntax_folding = 1
 autocmd FileType xml set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+" set nofoldenable
 "}}}
 " Path setting {{{
 set path+=;,include;inc;
@@ -532,6 +538,17 @@ let g:formatters_c = ['my_custom_c']
 " mhinz/vim-signify {{{
 Plugin 'mhinz/vim-signify'
 " }}}
+" nathanaelkane/vim-indent-guides{{{
+Plugin 'nathanaelkane/vim-indent-guides'
+"}}}
+" minibuf {{{
+Plugin 'fholgado/minibufexpl.vim'
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <C-Tab> :MBEbn<cr>
+map <C-S-Tab> :MBEbp<cr>
+" }}}
 "}}}
 " Syntax  {{{
 Plugin 'vim-ruby/vim-ruby'
@@ -548,3 +565,28 @@ Plugin 'wavded/vim-stylus'
 Plugin 'VimClojure'
 Plugin 'skammer/vim-css-color'
 "}}}
+" windows style {{{
+ source $VIMRUNTIME/mswin.vim
+ behave mswin
+"}}}
+" cursor line set{{{
+set cursorline
+hi CursorLine  cterm=NONE   ctermbg=darkred ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+
+"highlight CursorLine guibg=lightblue guifg=black ctermbg=lightgray ctermfg=black
+"highlight CursorColumn guibg=lightblue ctermbg=lightgray guifg=black ctermfg=black
+
+"}}}
+"indent-guide configuration{{{
+" 随 vim 自启动
+" let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+"}}}
+
+
